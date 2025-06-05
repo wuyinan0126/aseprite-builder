@@ -34,13 +34,13 @@ jobs:
       contents: write
     outputs:
       download-link: ${{ needs.fetch-aseprite-info.outputs.download-link }}
-      release-tag: v1.3.13
+      release-tag: ${{ steps.aseprite-link.outputs.release-tag }}
     steps:
       - uses: actions/checkout@v2
       - uses: ncipollo/release-action@v1
         with:
-          tag: v1.3.13
-          body: Aseprite-v1.3.13
+          tag: ${{ steps.aseprite-link.outputs.release-tag }}
+          body: Aseprite-${{ steps.aseprite-link.outputs.release-tag }}
           skipIfReleaseExists: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -131,4 +131,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: aseprite/build/bin/Aseprite-v1.3.13-${{ runner.os }}.zip
           asset_name: Aseprite-v1.3.13-${{ runner.os }}.zip
-          tag: ${{ needs.create-release.outputs.release-tag }}
+          tag: v1.3.13
