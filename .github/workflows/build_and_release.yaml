@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       download-link: ${{ steps.aseprite-link.outputs.download-link }}
-      release-tag: v1.3.13
+      release-tag: ${{ steps.aseprite-link.outputs.release-tag }}
     steps:
       - name: Fetch Aseprite release link
         id: aseprite-link
